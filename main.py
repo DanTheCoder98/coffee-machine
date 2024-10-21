@@ -15,7 +15,7 @@ def print_report():
     print(f"Money: £{resources["money"]:.2f}")
 
 def check_resources(drink):
-    """Checks if there is enough resources to make the drink."""
+    """Checks if there is enough resources to make the drink and returns either true or false."""
     for item in menu.MENU[drink]["ingredients"]:
         if menu.MENU[drink]["ingredients"][item] > resources[item]:
             print(f"Sorry, there is not enough {item}.")
@@ -23,7 +23,7 @@ def check_resources(drink):
         return True
     
 def process_coins():
-    """Prompts the user to insert the coins and calculates the total."""
+    """Prompts the user to insert the coins and calculates and returns the total."""
     print("Please insert coins.")
     total = int(input("How many quarters? ")) * 0.25
     total += int(input("How many dimes? ")) * 0.10
@@ -32,7 +32,7 @@ def process_coins():
     return total
 
 def check_transaction(money_received, drink_cost):
-    """Checks is the money received is enough to buy the drink."""
+    """Checks if the money received is enough to buy the drink and returns true or false."""
     if money_received >= drink_cost:
         change = round(money_received - drink_cost, 2)
         if change > 0:

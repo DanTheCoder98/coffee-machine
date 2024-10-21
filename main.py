@@ -8,14 +8,14 @@ resources = {
 }
 
 def print_report():
-    """Prints the current state of the machine's resources"""
+    """Prints the current state of the machine's resources."""
     print(f"Water: {resources["water"]}ml")
     print(f"Milk: {resources["milk"]}ml")
     print(f"Coffee: {resources["coffee"]}g")
     print(f"Money: £{resources["money"]:.2f}")
 
 def check_resources(drink):
-    """Checks if there is enough resources to make the drink"""
+    """Checks if there is enough resources to make the drink."""
     for item in menu.MENU[drink]["ingredients"]:
         if menu.MENU[drink]["ingredients"][item] > resources[item]:
             print(f"Sorry, there is not enough {item}.")
@@ -30,4 +30,17 @@ def process_coins():
     total += int(input("How many nickels? ")) * 0.05
     total += int(input("How many pennies? ")) * 0.01
     return total
+
+def check_transaction(money_received, drink_cost):
+    """Checks is the money received is enough to buy the drink."""
+    if money_received >= drink_cost:
+        change = round(money_received - drink_cost, 2)
+        if change > 0:
+            print(f"Here is £{change} in change")
+        resources["money"] += drink_cost
+        return True
+    else:
+        print("Sorry, That's not enough money. Money Refunded")
+
+
 

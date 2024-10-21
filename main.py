@@ -40,7 +40,13 @@ def check_transaction(money_received, drink_cost):
         resources["money"] += drink_cost
         return True
     else:
-        print("Sorry, That's not enough money. Money Refunded")
+        print("Sorry, That's not enough money. Money Refunded.")
+
+def make_drink(drink):
+    """Deducts the ingredients from the resources and makes the drink."""
+    for item in menu.MENU[drink]["ingredients"]:
+        resources[item] -= menu.MENU[drink]["ingredients"][item]
+    print(f"Here is your {drink}. Enjoy!.")
 
 
 

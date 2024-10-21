@@ -48,5 +48,24 @@ def make_drink(drink):
         resources[item] -= menu.MENU[drink]["ingredients"][item]
     print(f"Here is your {drink}. Enjoy!.")
 
+def coffee_machine():
+    is_on = True
+    while is_on:
+        user_choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
+        if user_choice == "off":
+            is_on = False
+        elif user_choice == "report":
+            print_report()
+        elif user_choice in menu.MENU:
+            if check_resources(user_choice):
+                drink_cost = menu.MENU[user_choice]["cost"]
+                money_received = process_coins()
+
+                if check_transaction(money_received, drink_cost):
+                    make_drink(user_choice)
+        else:
+            print("Invalid option. Please try again.")
+
+coffee_machine()
 
